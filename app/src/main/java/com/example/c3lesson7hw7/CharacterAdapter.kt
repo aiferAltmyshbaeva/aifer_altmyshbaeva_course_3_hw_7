@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.c3lesson7hw7.databinding.ItemCharacterBinding
 
 class CharacterAdapter(
@@ -27,10 +28,17 @@ class CharacterAdapter(
         private val binding: ItemCharacterBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Character) {
-            binding.tvIndex.text = character.index.toString()
-            binding.tvName.text = character.name
-            binding.tvStatus.text = character.status
-            binding.imgImage.setImageResource(character.image)
+            binding.apply {
+                tvIndex.text = (adapterPosition+1).toString()
+                tvName.text = character.name
+                tvStatus.text = character.status
+                Glide.with(imgImage.context).load(character.image).into(imgImage)
+            }
+
+            itemView.setOnClickListener{
+                onClick(character)
+            }
+
         }
     }
 }
