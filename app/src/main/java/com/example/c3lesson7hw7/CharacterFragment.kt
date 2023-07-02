@@ -41,7 +41,6 @@ class CharacterFragment : Fragment() {
     }
 
     private fun onClick(character: Character){
-//        val character = Character(binding.)
         findNavController().navigate(R.id.detailFragment, bundleOf(KEY_FOR_CHARACTER to character))
     }
 }
