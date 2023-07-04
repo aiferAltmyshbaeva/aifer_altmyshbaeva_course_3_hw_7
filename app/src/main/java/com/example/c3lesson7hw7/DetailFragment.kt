@@ -37,8 +37,7 @@ private lateinit var navArgs: DetailFragmentArgs
             tvStatusD.text = character.status
             tvNameD.text = character.name
             tvIndexD.text = character.index.toString()
-            //imgAvatar?.let { imgAvatar.loadImage(it)  }
-            Glide.with(imgAvatar.context).load(character.image).into(imgAvatar)
+            character.image?.let { imgAvatar.loadImage(it) }
         }
     }
 }
