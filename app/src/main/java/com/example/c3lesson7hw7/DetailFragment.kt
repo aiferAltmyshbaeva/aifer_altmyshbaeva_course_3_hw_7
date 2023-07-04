@@ -12,6 +12,7 @@ import com.example.c3lesson7hw7.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
 
 private lateinit var binding: FragmentDetailBinding
+private lateinit var navArgs: DetailFragmentArgs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,11 +24,20 @@ private lateinit var binding: FragmentDetailBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val character = arguments?.getSerializable(KEY_FOR_CHARACTER) as Character
+        initView()
+    }
+
+    private fun initView() {
+        arguments?.let {
+            navArgs = DetailFragmentArgs.fromBundle(it)
+        }
+
+        val character = navArgs.character
         binding.apply {
             tvStatusD.text = character.status
             tvNameD.text = character.name
             tvIndexD.text = character.index.toString()
+            //imgAvatar?.let { imgAvatar.loadImage(it)  }
             Glide.with(imgAvatar.context).load(character.image).into(imgAvatar)
         }
     }

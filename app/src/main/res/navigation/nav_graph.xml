@@ -9,10 +9,18 @@
         android:id="@+id/characterFragment"
         android:name="com.example.c3lesson7hw7.CharacterFragment"
         android:label="fragment_character"
-        tools:layout="@layout/fragment_character" />
+        tools:layout="@layout/fragment_character" >
+        <action
+            android:id="@+id/action_characterFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.c3lesson7hw7.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="character"
+            app:argType="com.example.c3lesson7hw7.Character"/>
+    </fragment>
 </navigation>

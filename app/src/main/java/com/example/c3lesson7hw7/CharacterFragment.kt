@@ -15,14 +15,54 @@ class CharacterFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterBinding
     private val characterList = arrayListOf(
-            Character("https://rickandmortyapi.com/api/character/avatar/1.jpeg", "Alive", "Rick Sanchez", 1),
-            Character("https://rickandmortyapi.com/api/character/avatar/2.jpeg", "Alive", "Morty Smith", 2),
-            Character("https://rickandmortyapi.com/api/character/avatar/11.jpeg", "Dead", "Albert Einstein", 3),
-            Character("https://rickandmortyapi.com/api/character/avatar/5.jpeg", "Alive", "Jerry Smith", 4),
-            Character("https://rickandmortyapi.com/api/character/avatar/3.jpeg", "Alive", "Summer Smith", 5),
-            Character("https://rickandmortyapi.com/api/character/avatar/4.jpeg", "Alive", "Beth Smith", 6),
-            Character("https://rickandmortyapi.com/api/character/avatar/6.jpeg", "Alive", "Abadango Cluster Princess", 7),
-            Character("https://rickandmortyapi.com/api/character/avatar/7.jpeg", "Unknown", "Abradolf Lincler", 8)
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "Alive",
+            "Rick Sanchez",
+            1
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+            "Alive",
+            "Morty Smith",
+            2
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/11.jpeg",
+            "Dead",
+            "Albert Einstein",
+            3
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+            "Alive",
+            "Jerry Smith",
+            4
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+            "Alive",
+            "Summer Smith",
+            5
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+            "Alive",
+            "Beth Smith",
+            6
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
+            "Alive",
+            "Abadango Cluster Princess",
+            7
+        ),
+        Character(
+            "https://rickandmortyapi.com/api/character/avatar/7.jpeg",
+            "Unknown",
+            "Abradolf Lincler",
+            8
+        )
     )
 
 
@@ -36,11 +76,15 @@ class CharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = CharacterAdapter(characterList, this:: onClick)
+        val adapter = CharacterAdapter(characterList, this::onClick)
         binding.rvCharacter.adapter = adapter
     }
 
-    private fun onClick(character: Character){
-        findNavController().navigate(R.id.detailFragment, bundleOf(KEY_FOR_CHARACTER to character))
+    private fun onClick(character: Character) {
+        findNavController().navigate(
+            CharacterFragmentDirections.actionCharacterFragmentToDetailFragment(
+                character
+            )
+        )
     }
 }
